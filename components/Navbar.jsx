@@ -7,12 +7,9 @@ export default function Navbar({ children }) {
   const [selectedFont, setSelectedFont] = useState('font-inter')
 
   useEffect(() => {
-    // Saved font load karo aur HTML tag par apply karo
-    const savedFont = localStorage.getItem('site-font')
-    if (savedFont) {
-      setSelectedFont(savedFont)
-      document.documentElement.className = document.documentElement.className.replace(/font-\S+/g, '') + ` ${savedFont}`
-    }
+    const savedFont = localStorage.getItem('site-font') || 'font-inter'
+    setSelectedFont(savedFont)
+    document.documentElement.setAttribute('data-font', savedFont)
 
     const savedTheme = localStorage.getItem('site-theme')
     if (savedTheme === 'dark') {
@@ -24,9 +21,7 @@ export default function Navbar({ children }) {
     const newFont = e.target.value
     setSelectedFont(newFont)
     localStorage.setItem('site-font', newFont)
-    
-    // HTML tag ki class change karne se poore page par font badal jayega
-    document.documentElement.className = document.documentElement.className.replace(/font-\S+/g, '') + ` ${newFont}`
+    document.documentElement.setAttribute('data-font', newFont)
   }
 
   const handleThemeToggle = () => {
