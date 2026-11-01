@@ -1,15 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Poppins, Roboto, Playfair_Display, Fira_Code } from "next/font/google";
 import "./globals.css";
+import Navbar from "../components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const poppins = Poppins({ weight: ["400", "600", "700"], subsets: ["latin"], variable: "--font-poppins" });
+const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-roboto" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira" });
 
 export const metadata = {
   title: "Create Next App",
@@ -20,13 +19,13 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${roboto.variable} ${playfair.variable} ${firaCode.variable} h-full antialiased font-inter`}
     >
       <body className="min-h-full flex flex-col">
-        {/* <h1>Hello, Next.js!</h1> */}
-        {children}
-        {/* <h1>I am a developer</h1> */}
-        </body>
+        <Navbar>
+          {children}
+        </Navbar>
+      </body>
     </html>
   );
 }
